@@ -66,8 +66,9 @@ DefaultPipeline::DefaultPipeline()
                                     "Display extra informations at each computation step. (default=false)"))
     , d_doDebugDraw(initData(&d_doDebugDraw, false, "draw",
                              "Draw the detected collisions. (default=false)"))
-    , m_depth(initData(&m_depth, 6, "depth",
-                       "Max depth of bounding trees. (default=6)"))
+    //TODO(dmarchal) fix the min & max value with response from discussion.
+    , d_depth(initData(&d_depth, 6, "depth",
+                       "Max depth of bounding trees. (default=6, min=?, max=?)"))
 {
 }
 
@@ -128,7 +129,7 @@ void DefaultPipeline::doCollisionDetection(const helper::vector<core::CollisionM
 
             if (!(*it)->isActive()) continue;
 
-            int used_depth = broadPhaseDetection->needsDeepBoundingTree() ? m_depth.getValue() : 0;
+            int used_depth = broadPhaseDetection->needsDeepBoundingTree() ? d_depth.getValue() : 0;
 
             if (continuous)
                 (*it)->computeContinuousBoundingTree(dt, used_depth);
