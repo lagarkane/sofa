@@ -26,7 +26,6 @@
 
 #include <map>
 #include <iostream>
-//#include <sstream>
 #include <string>
 
 
@@ -39,10 +38,10 @@ namespace std
 template<class K, class T>
 std::ostream& operator<< ( std::ostream& o, const std::map<K,T>& m )
 {
-    typename std::map<K,T>::const_iterator it=m.begin();
-    if (it == m.end()) return o;
+    typename std::map<K,T>::const_iterator it=m.begin(), itend=m.end();
+    if (it == itend) return o;
     o << it->first << " " << it->second; it++;
-    for ( ; it != m.end() ; ++it)
+    for ( ; it != itend ; ++it)
     {
         o << "\n" << it->first << " " << it->second;
     }
@@ -69,6 +68,6 @@ std::istream& operator>> ( std::istream& i, std::map<K,T>& m )
     return i;
 }
 
-}
+} // namespace std
 
 #endif
