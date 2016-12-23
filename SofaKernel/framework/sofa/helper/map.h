@@ -26,8 +26,11 @@
 
 #include <map>
 #include <iostream>
-#include <sstream>
+//#include <sstream>
 #include <string>
+
+
+/// adding string serialization to std::map to make it compatible with Data
 
 namespace std
 {
@@ -67,15 +70,5 @@ std::istream& operator>> ( std::istream& i, std::map<K,T>& m )
 }
 
 }
-
-namespace sofa
-{
-
-namespace helper
-{
-
-} // namespace helper
-
-} // namespace sofa
 
 #endif

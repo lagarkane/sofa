@@ -32,102 +32,49 @@
 #include <sofa/helper/helper.h>
 #include <sofa/helper/logging/Messaging.h>
 
-namespace sofa
+
+/// adding string serialization to std::set to make it compatible with Data
+
+namespace std
 {
 
-namespace helper
+/// Output stream
+template<class K, class L, class T>
+std::ostream& operator<< ( std::ostream& o, const std::set<K,L,T>& s )
 {
+    if( !s.empty() )
+    {
+        typename std::set<K,L,T>::const_iterator i=s.begin(), iend=s.end();
+        o << *i;
+        ++i;
+        for( ; i!=iend; ++i )
+            o << ' ' << *i;
+    }
+    return o;
+}
 
-//======================================================================
-///	Same as std::set, + input/output operators
-///
-///	\author Jeremie Allard, 2008
-///
-//======================================================================
-template<
-class T,
-      class Compare = std::less<T>,
-      class Alloc = std::allocator<T> >
-class set: public std::set<T,Compare,Alloc>
+/// Input stream
+template<class K, class L, class T>
+std::istream& operator>> ( std::istream& i, std::set<K,L,T>& s )
 {
-public:
+    K t;
+    s.clear();
+    while(i>>t)
+        s.insert(t);
+    if( i.rdstate() & std::ios_base::eofbit ) { i.clear(); }
+    return i;
+}
 
-    /// size_type
-    typedef typename std::set<T,Compare,Alloc>::size_type size_type;
-    /// reference to a value (read-write)
-    typedef typename std::set<T,Compare,Alloc>::reference reference;
-    /// const reference to a value (read only)
-    typedef typename std::set<T,Compare,Alloc>::const_reference const_reference;
-    /// iterator
-    typedef typename std::set<T,Compare,Alloc>::iterator iterator;
-    /// const iterator
-    typedef typename std::set<T,Compare,Alloc>::const_iterator const_iterator;
 
-    /// Basic constructor
-    set() {}
-    /// Constructor
-    set(const std::set<T, Compare, Alloc>& x): std::set<T,Compare,Alloc>(x) {}
-    /// Constructor
-    set<T, Compare, Alloc>& operator=(const std::set<T, Compare, Alloc>& x)
-    {
-        std::set<T,Compare,Alloc>::operator = (x);
-        return (*this);
-    }
 
-#ifdef __STL_MEMBER_TEMPLATES
-    /// Constructor
-    template <class InputIterator>
-    set(InputIterator first, InputIterator last): std::set<T,Compare,Alloc>(first,last) {}
-#else /* __STL_MEMBER_TEMPLATES */
-    /// Constructor
-    set(const_iterator first, const_iterator last): std::set<T,Compare,Alloc>(first,last) {}
-#endif /* __STL_MEMBER_TEMPLATES */
-
-    std::ostream& write(std::ostream& os) const
-    {
-        if( !this->empty() )
-        {
-            const_iterator i=this->begin();
-            os << *i;
-            ++i;
-            for( ; i!=this->end(); ++i )
-                os << ' ' << *i;
-        }
-        return os;
-    }
-
-    std::istream& read(std::istream& in)
-    {
-        T t;
-        this->clear();
-        while(in>>t)
-        {
-            this->insert(t);
-        }
-        if( in.rdstate() & std::ios_base::eofbit ) { in.clear(); }
-        return in;
-    }
-
-    /// Output stream
-    inline friend std::ostream& operator<< ( std::ostream& os, const set<T,Compare,Alloc>& vec )
-    {
-        return vec.write(os);
-    }
-
-    /// Input stream
-    inline friend std::istream& operator>> ( std::istream& in, set<T,Compare,Alloc>& vec )
-    {
-        return vec.read(in);
-    }
-};
 
 /// Input stream
 /// Specialization for reading sets of int and unsigned int using "A-B" notation for all integers between A and B, optionnally specifying a step using "A-B-step" notation.
 template<>
-inline std::istream& set<int, std::less<int>, std::allocator<int> >::read( std::istream& in )
+inline std::istream& operator>> ( std::istream& in, std::set<int, std::less<int>, std::allocator<int> >& _set )
 {
     int t;
-    this->clear();
+    _set.clear();
     std::string s;
     while(in>>s)
     {
@@ -135,7 +82,7 @@ inline std::istream& set<int, std::less<int>, std::allocator<int> >::read( std::
         if (hyphen == std::string::npos)
         {
             t = atoi(s.c_str());
-            this->insert(t);
+            _set.insert(t);
         }
         else
         {
@@ -170,10 +117,10 @@ inline std::istream& set<int, std::less<int>, std::allocator<int> >::read( std::
             }
             if (tinc < 0)
                 for (t=t1; t>=t2; t+=tinc)
-                    this->insert(t);
+                    _set.insert(t);
             else
                 for (t=t1; t<=t2; t+=tinc)
-                    this->insert(t);
+                    _set.insert(t);
         }
     }
     if( in.rdstate() & std::ios_base::eofbit ) { in.clear(); }
@@ -183,10 +130,10 @@ inline std::istream& set<int, std::less<int>, std::allocator<int> >::read( std::
 /// Input stream
 /// Specialization for reading sets of int and unsigned int using "A-B" notation for all integers between A and B
 template<>
-inline std::istream& set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >::read( std::istream& in )
+inline std::istream& operator>> ( std::istream& in, std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >& _set )
 {
     unsigned int t;
-    this->clear();
+    _set.clear();
     std::string s;
     while(in>>s)
     {
@@ -194,7 +141,7 @@ inline std::istream& set<unsigned int, std::less<unsigned int>, std::allocator<u
         if (hyphen == std::string::npos)
         {
             t = atoi(s.c_str());
-            this->insert(t);
+            _set.insert(t);
         }
         else
         {
@@ -230,18 +177,17 @@ inline std::istream& set<unsigned int, std::less<unsigned int>, std::allocator<u
             }
             if (tinc < 0)
                 for (t=t1; t>=t2; t=(unsigned int)((int)t+tinc))
-                    this->insert(t);
+                    _set.insert(t);
             else
                 for (t=t1; t<=t2; t=(unsigned int)((int)t+tinc))
-                    this->insert(t);
+                    _set.insert(t);
         }
     }
     if( in.rdstate() & std::ios_base::eofbit ) { in.clear(); }
     return in;
 }
 
-} // namespace helper
 
-} // namespace sofa
+} // namespace std
 
 #endif
