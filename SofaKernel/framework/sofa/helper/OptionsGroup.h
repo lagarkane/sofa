@@ -105,10 +105,9 @@ public :
     /// @}
 
 protected:
-
     helper::vector<std::string> textItems    ;
     unsigned int                selectedItem ;
-    std::string valueFromXml;
+    std::string                 valueFromXml ;
 
 public:
 
