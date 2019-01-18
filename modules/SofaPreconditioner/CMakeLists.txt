@@ -39,9 +39,7 @@ list(APPEND SOURCE_FILES
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} PUBLIC SofaImplicitOdeSolver SofaGeneralLinearSolver SofaSimpleFem)
-
 target_compile_definitions(${PROJECT_NAME} PRIVATE "-DSOFA_BUILD_SOFAPRECONDITIONER")
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${HEADER_FILES}")
 target_include_directories(${PROJECT_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/>")
 
 if(newmat_FOUND)
@@ -51,4 +49,4 @@ else()
     message(STATUS "-- newmat was not found.")
 endif()
 
-sofa_create_package(SofaPreconditioner ${PROJECT_VERSION} SofaPreconditioner SofaPreconditioner)
+sofa_install_targets(SofaPreconditioner ${PROJECT_NAME} SofaPreconditioner)
