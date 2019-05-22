@@ -47,7 +47,7 @@ Visitor::Result InitVisitor::processNodeTopDown(simulation::Node* node)
 
     for(unsigned int i=0; i<node->object.size(); ++i)
     {
-        node->object[i]->init();
+        node->object[i]->Init();
         node->object[i]->computeBBox(params, true);
         nodeBBox->include(node->object[i]->f_bbox.getValue(params));
     }

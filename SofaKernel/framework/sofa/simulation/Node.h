@@ -107,7 +107,7 @@ class SOFA_SIMULATION_CORE_API Node : public sofa::core::objectmodel::BaseNode, 
 {
 
 public:
-    SOFA_ABSTRACT_CLASS2(Node, BaseNode, Context);
+    SOFA_FRAMEWORK_ABSTRACT_CLASS2(Node, BaseNode, Context);
 
     typedef sofa::core::visual::DisplayFlags DisplayFlags;
 protected:

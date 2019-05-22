@@ -149,34 +149,105 @@ public:
 #define SOFA_TEMPLATE4(Class,P1,P2,P3,P4) Class<P1,P2,P3,P4>
 
 // This macro should now be used at the beginning of all declarations of classes with 1 base class
-#define SOFA_CLASS(T,Parent) \
+#define SOFA_FRAMEWORK_CLASS(T,Parent) \
     typedef T MyType;                                               \
     typedef ::sofa::core::objectmodel::TClass< T, Parent > MyClass; \
     typedef Parent Inherit1; \
     SOFA_CLASS_DECL
 
+#define SOFA_BASE_CLASS(T,Parent) \
+    typedef T MyType;                                               \
+    typedef ::sofa::core::objectmodel::TClass< T, Parent > MyClass; \
+    typedef Parent Inherit1; \
+    SOFA_CLASS_DECL; \
+    virtual void Init()                                                 \
+    {                                                                   \
+        if (_inherits[GetClass()->className]++) {                       \
+            T::init();                                                  \
+        }                                                               \
+    }
+
+ #define SOFA_CLASS(T,Parent)                                           \
+    typedef T MyType;                                                   \
+    typedef ::sofa::core::objectmodel::TClass< T, Parent > MyClass;     \
+    typedef Parent Inherit1;                                            \
+    SOFA_CLASS_DECL;                                                    \
+    virtual void Init() override                                        \
+    {                                                                   \
+        if (_inherits[GetClass()->className]++) {                       \
+            Inherit1::Init();                                           \
+            T::init();                                                  \
+        }                                                               \
+    }
+
+
 // This macro should now be used at the beginning of all declarations of classes with 1 base class
-#define SOFA_ABSTRACT_CLASS(T,Parent) \
+#define SOFA_FRAMEWORK_ABSTRACT_CLASS(T,Parent) \
     typedef T MyType;                                               \
     typedef ::sofa::core::objectmodel::TClass< T, Parent > MyClass; \
     typedef Parent Inherit1; \
     SOFA_ABSTRACT_CLASS_DECL
 
+#define SOFA_ABSTRACT_CLASS(T,Parent) \
+    typedef T MyType;                                               \
+    typedef ::sofa::core::objectmodel::TClass< T, Parent > MyClass; \
+    typedef Parent Inherit1; \
+    SOFA_ABSTRACT_CLASS_DECL; \
+    virtual void Init() override { Inherit1::Init(); T::init(); }
+
 // This macro should now be used at the beginning of all declarations of classes with 2 base classes
+#define SOFA_FRAMEWORK_CLASS2(T,Parent1,Parent2) \
+    typedef T MyType;                                               \
+    typedef ::sofa::core::objectmodel::TClass< T, std::pair<Parent1,Parent2> > MyClass; \
+    typedef Parent1 Inherit1; \
+    typedef Parent2 Inherit2; \
+    SOFA_CLASS_DECL
+
+
 #define SOFA_CLASS2(T,Parent1,Parent2) \
     typedef T MyType;                                               \
     typedef ::sofa::core::objectmodel::TClass< T, std::pair<Parent1,Parent2> > MyClass; \
     typedef Parent1 Inherit1; \
     typedef Parent2 Inherit2; \
-    SOFA_CLASS_DECL
+    SOFA_CLASS_DECL; \
+    virtual void Init() override                                         \
+    {                                                                    \
+        if (_inherits[GetClass()->className]++) {                        \
+            if (Inherit1::GetClass()->hasParent(BaseObject::GetClass())) \
+                Inherit1::Init();                                        \
+            if (Inherit2::GetClass()->hasParent(BaseObject::GetClass())) \
+                Inherit2::Init();                                        \
+            T::init();                                                   \
+        }                                                                \
+    }
+
 
 // This macro should now be used at the beginning of all declarations of classes with 2 base classes
-#define SOFA_ABSTRACT_CLASS2(T,Parent1,Parent2) \
+#define SOFA_FRAMEWORK_ABSTRACT_CLASS2(T,Parent1,Parent2) \
     typedef T MyType;                                               \
     typedef ::sofa::core::objectmodel::TClass< T, std::pair<Parent1,Parent2> > MyClass; \
     typedef Parent1 Inherit1; \
     typedef Parent2 Inherit2; \
     SOFA_ABSTRACT_CLASS_DECL
+
+
+#define SOFA_ABSTRACT_CLASS2(T,Parent1,Parent2) \
+    typedef T MyType;                                               \
+    typedef ::sofa::core::objectmodel::TClass< T, std::pair<Parent1,Parent2> > MyClass; \
+    typedef Parent1 Inherit1; \
+    typedef Parent2 Inherit2; \
+    SOFA_ABSTRACT_CLASS_DECL; \
+    virtual void Init() override                                         \
+    {                                                                    \
+        if (_inherits[GetClass()->className]++) {                        \
+            if (Inherit1::GetClass()->hasParent(BaseObject::GetClass())) \
+                Inherit1::Init();                                        \
+            if (Inherit2::GetClass()->hasParent(BaseObject::GetClass())) \
+                Inherit2::Init();                                        \
+            T::init();                                                   \
+        }                                                                \
+    }
+
 
 // This macro should now be used at the beginning of all declarations of classes with 3 base classes
 #define SOFA_CLASS3(T,Parent1,Parent2,Parent3) \

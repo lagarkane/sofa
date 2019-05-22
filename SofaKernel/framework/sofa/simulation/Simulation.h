@@ -40,7 +40,7 @@ namespace simulation
 class SOFA_SIMULATION_CORE_API Simulation: public virtual sofa::core::objectmodel::Base
 {
 public:
-    SOFA_CLASS(Simulation, sofa::core::objectmodel::Base);
+    SOFA_FRAMEWORK_CLASS(Simulation, sofa::core::objectmodel::Base);
 
     typedef sofa::core::visual::DisplayFlags DisplayFlags;
     Simulation();

@@ -3,36 +3,37 @@ cmake_minimum_required(VERSION 3.1)
 project(SofaFramework_test)
 
 set(SOURCE_FILES
-    core/loader/MeshLoader_test.cpp
-    core/objectmodel/AspectPool_test.cpp
-    core/objectmodel/Data_test.cpp
-    core/objectmodel/BaseLink_test.cpp
-    core/objectmodel/BaseObjectDescription_test.cpp
-    core/objectmodel/DataFileName_test.cpp
-    core/objectmodel/DataCallback_test.cpp
-    core/DataEngine_test.cpp
-    defaulttype/MapMapSparseMatrixEigenUtils_test.cpp
-    defaulttype/MatTypes_test.cpp
-    defaulttype/VecTypes_test.cpp
-    helper/types/Color_test.cpp
-    helper/types/Material_test.cpp
-    helper/KdTree_test.cpp
-    helper/Utils_test.cpp
-    helper/Quater_test.cpp
-    helper/SVector_test.cpp
-    helper/vector_test.cpp
-    helper/io/MeshOBJ_test.cpp
-    helper/io/XspLoader_test.cpp
-    helper/system/FileMonitor_test.cpp
-    helper/system/FileRepository_test.cpp
-    helper/system/FileSystem_test.cpp
-    helper/system/PluginManager_test.cpp
-    helper/system/atomic_test.cpp
-    helper/logging/logging_test.cpp
-    testing/TestMessageHandler_test.cpp
-    simulation/TaskSchedulerTestTasks.h
-    simulation/TaskSchedulerTests.cpp
-    simulation/TaskSchedulerTestTasks.cpp
+#    core/loader/MeshLoader_test.cpp
+#    core/objectmodel/AspectPool_test.cpp
+#    core/objectmodel/Data_test.cpp
+#    core/objectmodel/BaseLink_test.cpp
+#    core/objectmodel/BaseObjectDescription_test.cpp
+#    core/objectmodel/DataFileName_test.cpp
+#    core/objectmodel/DataCallback_test.cpp
+    core/objectmodel/BaseObject_test.cpp
+#    core/DataEngine_test.cpp
+#    defaulttype/MapMapSparseMatrixEigenUtils_test.cpp
+#    defaulttype/MatTypes_test.cpp
+#    defaulttype/VecTypes_test.cpp
+#    helper/types/Color_test.cpp
+#    helper/types/Material_test.cpp
+#    helper/KdTree_test.cpp
+#    helper/Utils_test.cpp
+#    helper/Quater_test.cpp
+#    helper/SVector_test.cpp
+#    helper/vector_test.cpp
+#    helper/io/MeshOBJ_test.cpp
+#    helper/io/XspLoader_test.cpp
+#    helper/system/FileMonitor_test.cpp
+#    helper/system/FileRepository_test.cpp
+#    helper/system/FileSystem_test.cpp
+#    helper/system/PluginManager_test.cpp
+#    helper/system/atomic_test.cpp
+#    helper/logging/logging_test.cpp
+#    testing/TestMessageHandler_test.cpp
+#    simulation/TaskSchedulerTestTasks.h
+#    simulation/TaskSchedulerTests.cpp
+#    simulation/TaskSchedulerTestTasks.cpp
     main.cpp
 )
 

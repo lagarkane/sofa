@@ -44,7 +44,7 @@ Mappings typically store constant local coordinates of the output points, and up
 class SOFA_CORE_API BaseMapping : public virtual objectmodel::BaseObject
 {
 public:
-    SOFA_ABSTRACT_CLASS(BaseMapping, objectmodel::BaseObject);
+    SOFA_ABSTRACT_CLASS(BaseMapping, objectmodel::BaseObject)
     SOFA_BASE_CAST_IMPLEMENTATION(BaseMapping)
 protected:
 

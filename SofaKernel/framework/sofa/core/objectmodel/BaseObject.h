@@ -69,7 +69,7 @@ enum class ComponentState {
 class SOFA_CORE_API BaseObject : public virtual Base
 {
 public:
-    SOFA_CLASS(BaseObject, Base);
+    SOFA_BASE_CLASS(BaseObject, Base)
     SOFA_BASE_CAST_IMPLEMENTATION(BaseObject)
 
 protected:
@@ -470,6 +470,8 @@ protected:
     // BaseNode can set the context of its own objects
     friend class BaseNode;
 
+    // Used to prevent duplicated calls to init() in diamond inheritance scenarios
+    std::map<std::string, int> _inherits;
 
 public:
 
