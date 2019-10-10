@@ -176,7 +176,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         bool updateImage = m_dataTracker.hasChanged(this->inputImage);	// change of input image -> update output image
         bool updateTransform = m_dataTracker.hasChanged(this->inputTransform);	// change of input transform -> update output transform

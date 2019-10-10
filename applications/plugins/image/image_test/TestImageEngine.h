@@ -85,7 +85,7 @@ public:
         update();
     }
 
-    void doUpdate() override
+    void onUpdate() override
     {
         waImage out(this->outputImage);
         raImage in(this->inputImage);

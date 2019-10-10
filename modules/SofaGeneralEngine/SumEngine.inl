@@ -60,7 +60,7 @@ void SumEngine<DataType>::reinit()
 }
 
 template <class DataType>
-void SumEngine<DataType>::doUpdate()
+void SumEngine<DataType>::onUpdate()
 {
     helper::ReadAccessor<Data<VecData> > in = d_input;
 

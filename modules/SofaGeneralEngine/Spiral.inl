@@ -62,7 +62,7 @@ void Spiral<DataTypes>::reinit()
 
 
 template <class DataTypes>
-void Spiral<DataTypes>::doUpdate()
+void Spiral<DataTypes>::onUpdate()
 {
     const VecCoord x0 = f_X0.getValue();
 

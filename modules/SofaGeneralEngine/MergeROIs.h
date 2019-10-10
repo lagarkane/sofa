@@ -82,7 +82,7 @@ protected:
 
     ~MergeROIs() override {}
 
-    void doUpdate() override;
+    void onUpdate() override;
 
 };
 

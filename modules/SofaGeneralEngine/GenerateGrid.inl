@@ -70,7 +70,7 @@ void GenerateGrid<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void GenerateGrid<DataTypes>::doUpdate()
+void GenerateGrid<DataTypes>::onUpdate()
 {
     helper::WriteAccessor<Data<VecCoord> > out = d_outputX;
 

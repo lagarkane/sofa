@@ -66,7 +66,7 @@ void NormalsFromPoints<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void NormalsFromPoints<DataTypes>::doUpdate()
+void NormalsFromPoints<DataTypes>::onUpdate()
 {
     helper::ReadAccessor<Data< VecCoord > > raPositions = position;
     helper::ReadAccessor<Data< helper::vector< helper::fixed_array <unsigned int,3> > > > raTriangles = triangles;

@@ -131,7 +131,7 @@ bool PairBoxROI<DataTypes>::isPointInBox(const PointID& pid, const Vec6& b)
 }
 
 template <class DataTypes>
-void PairBoxROI<DataTypes>::doUpdate()
+void PairBoxROI<DataTypes>::onUpdate()
 {
    const VecCoord* x0 = &f_X0.getValue();
 

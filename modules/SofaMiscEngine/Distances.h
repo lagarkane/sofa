@@ -110,7 +110,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     /** \brief Compute the distance map depending ion the distance type.
     *

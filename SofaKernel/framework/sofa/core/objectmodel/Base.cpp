@@ -57,10 +57,13 @@ Base::Base()
     , f_tags(initData( &f_tags, "tags", "list of the subsets the objet belongs to"))
     , f_bbox(initData( &f_bbox, "bbox", "this object bounding box"))
 {
-    name.setOwnerClass("Base");
+   name.setOwnerClass("Base");
     name.setAutoLink(false);
     name.setReadOnly(true);
     f_printLog.setOwnerClass("Base");
+    d_componentstate.setAutoLink(false);
+    d_componentstate.setReadOnly(true);
+    d_componentstate.setOwnerClass("Base");
     f_printLog.setAutoLink(false);
     f_tags.setOwnerClass("Base");
     f_tags.setAutoLink(false);
@@ -120,6 +123,18 @@ void Base::initData0( BaseData* field, BaseData::BaseInitData& res, const char* 
         res.group = "Visualization";
 }
 
+bool Base::hasDataChanged(const BaseData& data) const
+{
+    if (data.getOwner() != this)
+        msg_error(this) << "Only data fields owned by this object are tracked";
+    return m_dataTracker.hasChanged(data);
+}
+
+bool Base::hasDataChanged() const
+{
+    return m_dataTracker.hasChanged();
+}
+
 /// Add a data field.
 /// Note that this method should only be called if the field was not initialized with the initData method
 void Base::addData(BaseData* f)
@@ -139,6 +154,7 @@ void Base::addData(BaseData* f, const std::string& name)
     m_vecData.push_back(f);
     m_aliasData.insert(std::make_pair(name, f));
     f->setOwner(this);
+    m_dataTracker.trackData(*f);
 }
 
 /// Add an alias to a Data

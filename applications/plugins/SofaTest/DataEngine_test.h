@@ -48,9 +48,9 @@ public:
     {}
 
 
-    void doUpdate()
+    void onUpdate()
     {
-        Inherit1::doUpdate();
+        Inherit1::onUpdate();
         ++m_counter;
     }
 

@@ -90,7 +90,7 @@ void DilateEngine<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void DilateEngine<DataTypes>::doUpdate()
+void DilateEngine<DataTypes>::onUpdate()
 {
     ReadAccessor<Data<VecCoord> > in = d_inputX;
     ReadAccessor<Data<SeqTriangles> > triangles = d_triangles;

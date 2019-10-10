@@ -89,7 +89,7 @@ void ClusteringEngine<DataTypes>::init()
 
 
 template <class DataTypes>
-void ClusteringEngine<DataTypes>::doUpdate()
+void ClusteringEngine<DataTypes>::onUpdate()
 {
     if(load()) return;
 

@@ -234,7 +234,7 @@ public:
     void init() override;
     void handleEvent(sofa::core::objectmodel::Event* ) override;
 
-    void doUpdateInternal() override;
+    void onDataChanged() override;
 
     TopologyType getMassTopologyType() const
     {

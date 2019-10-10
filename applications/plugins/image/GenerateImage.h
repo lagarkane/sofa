@@ -81,7 +81,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         const imCoord& dim = this->dimxyzct.getValue();
         helper::WriteOnlyAccessor<Data< ImageTypes > > out(this->image);

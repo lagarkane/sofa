@@ -77,7 +77,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     void ApplyTopologyChanges();
 

@@ -123,7 +123,7 @@ protected:
         if(indices.find(index)!=indices.end()) return true; else return false;
     }
 
-    void doUpdate() override
+    void onUpdate() override
     {
         if( !parentTopology ) return;
 

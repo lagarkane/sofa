@@ -381,7 +381,7 @@ void SubsetTopology<DataTypes>::findVertexOnBorder(const Tetra &t, unsigned int 
 
 
 template <class DataTypes>
-void SubsetTopology<DataTypes>::doUpdate()
+void SubsetTopology<DataTypes>::onUpdate()
 {
     unsigned int ROInum = 0;
     const helper::vector<Vec3>& cen = (centers.getValue());

@@ -28,7 +28,7 @@
 #include <sofa/core/VecId.h>
 
 #include <sofa/helper/AdvancedTimer.h>
-#include <sofa/simulation/UpdateInternalDataVisitor.h>
+#include <sofa/simulation/UpdateDataFieldsVisitor.h>
 #include <sofa/simulation/BehaviorUpdatePositionVisitor.h>
 #include <sofa/simulation/MechanicalOperations.h>
 #include <sofa/simulation/SolveVisitor.h>
@@ -167,7 +167,7 @@ void FreeMotionAnimationLoop::step(const sofa::core::ExecParams* params, SReal d
 
     dmsg_info() << "updatePos performed - updateInternal called" ;
 
-    UpdateInternalDataVisitor iud(params);
+    UpdateDataFieldsVisitor iud(params);
 
     dmsg_info() << "updateInternal called" ;
 

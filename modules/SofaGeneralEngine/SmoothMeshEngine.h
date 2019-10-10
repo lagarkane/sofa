@@ -60,7 +60,7 @@ protected:
 public:
     void init() override;
     void reinit() override;
-    void doUpdate() override;
+    void onUpdate() override;
 	void computeBBox(const core::ExecParams* params, bool onlyVisible) override;
     void draw(const core::visual::VisualParams* vparams) override;
 

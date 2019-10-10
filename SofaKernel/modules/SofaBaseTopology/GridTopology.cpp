@@ -49,7 +49,7 @@ GridTopology::GridUpdate::GridUpdate(GridTopology *t):
     setDirtyValue();
 }
 
-void GridTopology::GridUpdate::doUpdate()
+void GridTopology::GridUpdate::onUpdate()
 {
     updateEdges();
     updateQuads();

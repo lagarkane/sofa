@@ -76,7 +76,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     virtual std::string getTemplateName() const override
     {

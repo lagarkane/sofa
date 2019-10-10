@@ -199,7 +199,7 @@ bool RandomPointDistributionInSurface<DataTypes>::testDistance(Coord p)
 }
 
 template <class DataTypes>
-void RandomPointDistributionInSurface<DataTypes>::doUpdate()
+void RandomPointDistributionInSurface<DataTypes>::onUpdate()
 {
     const VecCoord& vertices = f_vertices.getValue();
     const helper::vector<sofa::core::topology::BaseMeshTopology::Triangle>& triangles = f_triangles.getValue();

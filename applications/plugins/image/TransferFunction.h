@@ -157,7 +157,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         TransferFunctionSpecialization<InImageTypes,OutImageTypes>::update( *this );
     }

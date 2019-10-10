@@ -570,7 +570,7 @@ bool BoxROI<DataTypes>::isQuadInBoxesStrict(const Quad& q)
 
 // The update method is called when the engine is marked as dirty.
 template <class DataTypes>
-void BoxROI<DataTypes>::doUpdate()
+void BoxROI<DataTypes>::onUpdate()
 {
     // Check whether an element can partially be inside the box or if all of its nodes must be inside
     bool strict = d_strict.getValue();

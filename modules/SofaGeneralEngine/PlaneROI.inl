@@ -281,7 +281,7 @@ bool PlaneROI<DataTypes>::isTetrahedronInPlane(const Tetra& t)
 
 
 template <class DataTypes>
-void PlaneROI<DataTypes>::doUpdate()
+void PlaneROI<DataTypes>::onUpdate()
 {
     const helper::vector<Vec10>& vp=planes.getValue();
     if (vp.empty())

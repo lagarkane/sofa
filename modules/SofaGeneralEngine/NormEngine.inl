@@ -60,7 +60,7 @@ void NormEngine<DataType>::reinit()
 }
 
 template <class DataType>
-void NormEngine<DataType>::doUpdate()
+void NormEngine<DataType>::onUpdate()
 {
     helper::ReadAccessor<Data<VecData> > in = d_input;
     int l = d_normType.getValue();

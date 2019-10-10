@@ -109,7 +109,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         raImage in1(this->inputImage1);
         raImage in2(this->inputImage2);

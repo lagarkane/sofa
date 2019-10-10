@@ -112,7 +112,7 @@ protected:
 
     ImageContainer* container;
 
-    void doUpdate() override
+    void onUpdate() override
     {
         if (!container) return;
 

@@ -67,7 +67,7 @@ void DisplacementTransformEngine< DataTypes, OutputType >::init()
 }
 
 template < class DataTypes, class OutputType >
-void DisplacementTransformEngine< DataTypes, OutputType >::doUpdate()
+void DisplacementTransformEngine< DataTypes, OutputType >::onUpdate()
 {
     // parent method
     Inherit::init();
@@ -162,7 +162,7 @@ void DisplacementMatrixEngine< DataTypes >::reinit()
 }
 
 template < class DataTypes >
-void DisplacementMatrixEngine< DataTypes >::doUpdate()
+void DisplacementMatrixEngine< DataTypes >::onUpdate()
 {
     const VecCoord& x = this->d_x.getValue();
     const VecCoord& x0 = this->d_x0.getValue();

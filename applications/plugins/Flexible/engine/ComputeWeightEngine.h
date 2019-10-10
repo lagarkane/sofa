@@ -53,7 +53,7 @@ public:
     void init() override;
     void reinit() override;
     // Update the engine
-    void doUpdate() override;
+    void onUpdate() override;
 
 protected:
 

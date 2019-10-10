@@ -90,7 +90,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
     }
 

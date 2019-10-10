@@ -539,7 +539,7 @@ template <class DataTypes, class MassType>
 void DiagonalMass<DataTypes, MassType>::reinit()
 {
     // Now update is handled through the doUpdateInternal mechanism
-    // called at each begin of step through the UpdateInternalDataVisitor
+    // called at each begin of step through the UpdateDataFieldsVisitor
 }
 
 template <class DataTypes, class MassType>
@@ -1190,7 +1190,7 @@ const typename DiagonalMass<DataTypes, MassType>::Real &DiagonalMass<DataTypes, 
 
 
 template <class DataTypes, class MassType>
-void DiagonalMass<DataTypes, MassType>::doUpdateInternal()
+void DiagonalMass<DataTypes, MassType>::onDataChanged()
 {
     if (this->hasDataChanged(d_totalMass))
     {

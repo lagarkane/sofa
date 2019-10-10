@@ -73,7 +73,7 @@ private:
         typedef MeshTopology::Hexa Hexa;
         SOFA_CLASS(GridUpdate,sofa::core::DataEngine);
         GridUpdate(GridTopology* t);
-        void doUpdate() override;
+        void onUpdate() override;
     protected:
         void updateEdges();
         void updateQuads();

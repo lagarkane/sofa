@@ -59,7 +59,7 @@ public:
     ~ComplementaryROI() override;
 
     /// Update
-    void doUpdate() override;
+    void onUpdate() override;
 
     /// Parse the given description to assign values to this object's fields and potentially other parameters
     void parse ( sofa::core::objectmodel::BaseObjectDescription* arg ) override;

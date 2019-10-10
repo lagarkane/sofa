@@ -112,7 +112,7 @@ protected:
 
     ~ROIValueMapper() override {}
 
-    void doUpdate() override
+    void onUpdate() override
     {
         size_t nb = nbROIs.getValue();
         f_indices.resize(nb);

@@ -52,7 +52,7 @@ template class SOFA_GENERAL_ENGINE_API ShapeMatching<Rigid3Types>;
 // specialization for rigids
 
 template <>
-void ShapeMatching<Rigid3Types>::doUpdate()
+void ShapeMatching<Rigid3Types>::onUpdate()
 {
     // TO DO: shape matching for rigids as in [Muller11]
 }

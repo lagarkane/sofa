@@ -113,7 +113,7 @@ public:
     }
 
     void reinit()    override { update();  }
-    void doUpdate() override;
+    void onUpdate() override;
 };
 
 #if  !defined(SOFA_COMPONENT_ENGINE_MeshClosingEngine_CPP)

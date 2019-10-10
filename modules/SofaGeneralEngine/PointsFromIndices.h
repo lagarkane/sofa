@@ -62,7 +62,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     /// Pre-construction check method called by ObjectFactory.
     /// Check that DataTypes matches the MechanicalState.

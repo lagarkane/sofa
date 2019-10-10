@@ -52,7 +52,7 @@ protected:
     /**
      * Update the transformation, to be implemented in herited classes
      */
-    void doUpdate() override = 0;
+    void onUpdate() override = 0;
 
 public:
     void init() override;
@@ -75,7 +75,7 @@ public:
 protected:
     InvertTransformMatrixEngine() {}
     ~InvertTransformMatrixEngine() override {}
-    void doUpdate() override;
+    void onUpdate() override;
 };
 
 /**
@@ -90,7 +90,7 @@ public:
 protected:
     TranslateTransformMatrixEngine();
     ~TranslateTransformMatrixEngine() override {}
-    void doUpdate() override;
+    void onUpdate() override;
 
 public:
     void init() override;
@@ -113,7 +113,7 @@ public:
 protected:
     RotateTransformMatrixEngine();
     ~RotateTransformMatrixEngine() override {}
-    void doUpdate() override;
+    void onUpdate() override;
 
 public:
     void init() override;
@@ -136,7 +136,7 @@ public:
 protected:
     ScaleTransformMatrixEngine();
     ~ScaleTransformMatrixEngine() override {}
-    void doUpdate() override;
+    void onUpdate() override;
 
 public:
     void init() override;

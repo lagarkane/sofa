@@ -68,7 +68,7 @@ void Indices2ValuesMapper<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void Indices2ValuesMapper<DataTypes>::doUpdate()
+void Indices2ValuesMapper<DataTypes>::onUpdate()
 {
     helper::ReadAccessor< Data< helper::vector<Real> > > inputValues = f_inputValues;
 

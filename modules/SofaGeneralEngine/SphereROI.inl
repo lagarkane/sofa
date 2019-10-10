@@ -270,7 +270,7 @@ bool SphereROI<DataTypes>::isTetrahedronInSphere(const Vec3& c, const Real& r, c
 
 
 template <class DataTypes>
-void SphereROI<DataTypes>::doUpdate()
+void SphereROI<DataTypes>::onUpdate()
 {
     const helper::vector<Vec3>& cen = (centers.getValue());
     const helper::vector<Real>& rad = (radii.getValue());
@@ -666,7 +666,7 @@ bool SphereROI<defaulttype::Rigid3Types>::isTetrahedronInSphere(const Vec3& c, c
 
 
 template <>
-void SphereROI<defaulttype::Rigid3Types>::doUpdate()
+void SphereROI<defaulttype::Rigid3Types>::onUpdate()
 {
 	const helper::vector<Vec3>& cen = (centers.getValue());
 	const helper::vector<Real>& rad = (radii.getValue());

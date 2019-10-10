@@ -579,7 +579,7 @@ protected:
     static const int spatial_dimensions=3;
     mapping::BasePointMapper<spatial_dimensions,Real>* deformationMapping; ///< link to local deformation mapping for weights update
 
-    void doUpdate() override
+    void onUpdate() override
     {
         ImageGaussPointSamplerSpec::init(this);
         ImageGaussPointSamplerSpec::Cluster_SimilarIndices(this);

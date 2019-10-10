@@ -98,7 +98,7 @@ protected:
     {
     }
 
-    void doUpdate() override
+    void onUpdate() override
     {
         const unsigned int M = vf_inputs.size();
         if(!M) return;

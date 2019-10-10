@@ -570,7 +570,7 @@ protected:
 
     unsigned int time;
 
-    void doUpdate() override
+    void onUpdate() override
     {
         raParam params(this->param);
 

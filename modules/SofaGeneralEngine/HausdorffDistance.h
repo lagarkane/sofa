@@ -65,7 +65,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     //Input
     Data<VecCoord> f_points_1; ///< Points belonging to the first point cloud

@@ -54,7 +54,7 @@ MeshSubsetEngine<DataTypes>::~MeshSubsetEngine()
 }
 
 template <class DataTypes>
-void MeshSubsetEngine<DataTypes>::doUpdate()
+void MeshSubsetEngine<DataTypes>::onUpdate()
 {
     helper::ReadAccessor<Data< SeqPositions > > pos(this->inputPosition);
     helper::ReadAccessor<Data< SeqEdges > > edg(this->inputEdges);

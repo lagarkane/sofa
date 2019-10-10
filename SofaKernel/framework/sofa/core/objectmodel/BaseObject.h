@@ -113,8 +113,8 @@ public:
     /// Update method called when variables used in precomputation are modified.
     virtual void reinit();
 
-    /// Update method called when variables (used to compute other internal variables) are modified
-    void updateInternal();
+    /// Update method called at the beginning of a time step, to let components update themselves according to their data fields.
+    virtual void updateDataFields() final;
 
     /// Save the initial state for later uses in reset()
     virtual void storeResetState();
@@ -487,8 +487,9 @@ protected:
     LinkSlaves l_slaves;
     SingleLink<BaseObject, BaseObject, BaseLink::FLAG_DOUBLELINK> l_master;
 
-    /// Implementation of the internal update
-    virtual void doUpdateInternal();
+    /// Method called when one or more data have changed in the component. (delegate method for updateDataFields())
+    /// hasDataChanged() can be used internally to perform actions specific to certain data
+    virtual void onDataChanged();
 
     /// This method insures that context is never NULL (using BaseContext::getDefault() instead)
     /// and that all slaves of an object share its context

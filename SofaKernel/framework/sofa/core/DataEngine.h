@@ -24,6 +24,7 @@
 
 #include <sofa/core/core.h>
 #include <sofa/core/objectmodel/BaseObject.h>
+#include <sofa/core/objectmodel/BaseData.h>
 #include <sofa/core/DataTracker.h>
 
 namespace sofa
@@ -31,6 +32,15 @@ namespace sofa
 
 namespace core
 {
+
+namespace objectmodel
+{
+template <class T>
+class InputData;
+
+template <class T>
+class OutputData;
+}
 
 /**
  *  \brief from a set of Data inputs computes a set of Data outputs
@@ -50,17 +60,25 @@ namespace core
  *    update();
  * }
  *
- * void doUpdate() override
+ * void onUpdate() override
  * {
  *    access your inputs, set your outputs...
  * }
  *
  */
-class SOFA_CORE_API DataEngine : public core::DataTrackerDDGNode, public virtual core::objectmodel::BaseObject
+class SOFA_CORE_API DataEngine : public core::objectmodel::DDGNode, public virtual core::objectmodel::BaseObject
 {
 public:
-    SOFA_ABSTRACT_CLASS2(DataEngine, core::objectmodel::BaseObject, core::DataTrackerDDGNode);
+    SOFA_ABSTRACT_CLASS2(DataEngine, core::objectmodel::BaseObject, core::objectmodel::DDGNode);
     SOFA_BASE_CAST_IMPLEMENTATION(DataEngine)
+
+    DataEngine(const DataEngine& n) ;
+    DataEngine& operator=(const DataEngine& n) ;
+
+    /// Called in update(), back-propagates the data update
+    /// in the data dependency graph
+    void updateAllInputs();
+
 protected:
     /// Constructor
     DataEngine();
@@ -68,32 +86,54 @@ protected:
     /// Destructor. Do nothing
     ~DataEngine() override;
 
-private:
-	DataEngine(const DataEngine& n) ;
-	DataEngine& operator=(const DataEngine& n) ;
 
-    /// Called in update(), back-propagates the data update
-    /// in the data dependency graph
-    void updateAllInputs();
+private:
+    /// @name Tracking Data mechanism
+    /// each Data added to the DataTracker
+    /// is tracked to be able to check if its value changed
+    /// since their last clean, called by default
+    /// in DataEngine::cleanDirty().
+    /// @{
+
+    DataTracker m_inputDataTracker;
+    ///@}
+
+    VecData m_inputDataFields;
+    VecData m_outputDataFields;
 
 protected:
     /// Where you put your engine's impl
-    virtual void doUpdate() = 0;
-
-    /// Prevent engines to use the internalUpdate mechanism, so that only update/doUpdate is used
-    virtual void doInternalUpdate() final {}
+    virtual void onUpdate() = 0;
 
 public:
     /// Updates your inputs and calls cleanDirty() for you.
-    /// User implementation moved to doUpdate()
+    /// User implementation moved to onUpdate()
     void update() final;
 
-    /// Add a new input to this engine
-    /// Automatically adds the input fields to the datatracker
-    void addInput(sofa::core::objectmodel::BaseData* data);
+    bool hasInputDataChanged(const objectmodel::BaseData& input);
+    bool hasInputDataChanged();
 
-    /// Add a new output to this engine
-    void addOutput(objectmodel::BaseData* n);
+    /// Set dirty flag to false
+    /// for the DDGNode and for all the tracked Data
+    virtual void cleanDirty(const core::ExecParams* params = nullptr);
+
+    typedef helper::vector<objectmodel::BaseData*> VecData;
+
+    /// Get the list of input data fields for this Engine
+    const VecData& getInputDataFields();
+
+    /// Get the list of output data fields for this Engine
+    const VecData& getOutputDataFields();
+
+
+    /// used by InputData to register itself in DataEngine
+    void addInput(objectmodel::BaseData* data);
+    /// used by OutputData to register itself in DataEngine
+    void addOutput(objectmodel::BaseData* data);
+    /// used to unregister an InputData from this DataEngine
+    void removeInput(objectmodel::BaseData* data);
+    /// used to unregister a OutputData from this DataEngine
+    void removeOutput(objectmodel::BaseData* data);
 
     // The methods below must be redefined because of the
     // double inheritance from Base and DDGNode
@@ -183,10 +223,90 @@ public:
     {
         objectmodel::BaseObject::addLink(l);
     }
+
+
+
+    template<class SOFA_T>
+    objectmodel::BaseData::BaseInitData initInput(Data<SOFA_T>* field, const char* name, const char* help,
+                                                                objectmodel::BaseData::DataFlags dataflags)
+    {
+        objectmodel::BaseData::BaseInitData res;
+        this->initData0(field, res, name, help, dataflags);
+        res.ownerClass = GetClass()->className.c_str();
+        res.group = "Inputs";
+        addInput(field);
+        return res;
+    }
+
+    template<class SOFA_T>
+    objectmodel::BaseData::BaseInitData initOutput(Data<SOFA_T>* field, const char* name, const char* help,
+                                                                objectmodel::BaseData::DataFlags dataflags)
+    {
+        objectmodel::BaseData::BaseInitData res;
+        this->initData0(field, res, name, help, dataflags);
+        res.ownerClass = GetClass()->className.c_str();
+        res.group = "Outputs";
+        addOutput(field);
+        return res;
+    }
+
+
+    template<class SOFA_T> objectmodel::BaseData::BaseInitData
+    initInput(objectmodel::Data<SOFA_T>* field, const char* name, const char* help,
+             bool isDisplayed=true, bool isReadOnly=false)
+    {
+        ::sofa::core::objectmodel::BaseData::BaseInitData res;
+        this->initData0(field, res, name, help,
+                        isDisplayed, isReadOnly);
+        res.ownerClass = GetClass()->className.c_str();
+        res.group = "Inputs";
+        addInput(field);
+        return res;
+    }
+
+    template<class SOFA_T> objectmodel::BaseData::BaseInitData
+    initOutput(objectmodel::Data<SOFA_T>* field, const char* name, const char* help,
+             bool isDisplayed=true, bool isReadOnly=false)
+    {
+        ::sofa::core::objectmodel::BaseData::BaseInitData res;
+        this->initData0(field, res, name, help,
+                        isDisplayed, isReadOnly);
+        res.ownerClass = GetClass()->className.c_str();
+        res.group = "Outputs";
+        addOutput(field);
+        return res;
+    }
+
+    template<class SOFA_T> typename ::sofa::core::objectmodel::Data<SOFA_T>::InitData initInput(
+            ::sofa::core::objectmodel::Data<SOFA_T>* field, const SOFA_T& value, const char* name,
+            const char* help, bool isDisplayed=true, bool isReadOnly=false)
+    {
+        typename ::sofa::core::objectmodel::Data<SOFA_T>::InitData res;
+        this->initData0(field, res, value, name, help,
+                        isDisplayed, isReadOnly);
+        res.ownerClass = GetClass()->className.c_str();
+        res.group = "Inputs";
+        addInput(field);
+        return res;
+    }
+    template<class SOFA_T> typename ::sofa::core::objectmodel::Data<SOFA_T>::InitData initOutput(
+            ::sofa::core::objectmodel::Data<SOFA_T>* field, const SOFA_T& value, const char* name,
+            const char* help, bool isDisplayed=true, bool isReadOnly=false)
+    {
+        typename ::sofa::core::objectmodel::Data<SOFA_T>::InitData res;
+        this->initData0(field, res, value, name, help,
+                        isDisplayed, isReadOnly);
+        res.ownerClass = GetClass()->className.c_str();
+        res.group = "Outputs";
+        addOutput(field);
+        return res;
+    }
 };
 
 } // namespace core
 
 } // namespace sofa
+
+#include <sofa/core/objectmodel/EngineData.h>
 
 #endif

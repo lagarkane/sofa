@@ -61,7 +61,7 @@ void GroupFilterYoungModulus<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void GroupFilterYoungModulus<DataTypes>::doUpdate()
+void GroupFilterYoungModulus<DataTypes>::onUpdate()
 {
     //Input
     const std::string& strMap = p_mapGroupModulus.getValue();

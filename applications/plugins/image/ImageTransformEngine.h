@@ -95,7 +95,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
 		raTransform inT(this->inputTransform);
         waTransform outT(this->outputTransform);

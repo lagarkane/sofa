@@ -128,7 +128,7 @@ public:
 };
 
 template <class DataTypes>
-void ProximityROI<DataTypes>::doUpdate()
+void ProximityROI<DataTypes>::onUpdate()
 {
     const helper::vector<Vec3>& cen = (centers.getValue());
     const helper::vector<Real>& rad = (radii.getValue());

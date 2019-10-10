@@ -72,7 +72,7 @@ void Vertex2Frame<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void Vertex2Frame<DataTypes>::doUpdate()
+void Vertex2Frame<DataTypes>::onUpdate()
 {
     const helper::vector<CPos>& fVertices = d_vertices.getValue();
     const helper::vector<CPos>& fNormals = d_normals.getValue();

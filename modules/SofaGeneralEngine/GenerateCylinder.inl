@@ -93,7 +93,7 @@ void GenerateCylinder<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void GenerateCylinder<DataTypes>::doUpdate()
+void GenerateCylinder<DataTypes>::onUpdate()
 {
     const Real radius = f_radius.getValue();
     const Real height = f_height.getValue();

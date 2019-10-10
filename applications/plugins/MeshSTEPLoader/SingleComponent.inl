@@ -85,7 +85,7 @@ void SingleComponent<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void SingleComponent<DataTypes>::doUpdate()
+void SingleComponent<DataTypes>::onUpdate()
 {
     loadMesh();
 }

@@ -76,7 +76,7 @@ protected:
     {
     }
 
-    void doUpdate() override
+    void onUpdate() override
     {
         helper::ReadAccessor< Data< helper::vector<Real> > > invol(f_inputVolume);
         if(!invol.size()) serr<<"no volume provided -> use unit default volume"<<sendl;

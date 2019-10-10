@@ -457,7 +457,7 @@ void MeshROI<DataTypes>::compute()
     ReadAccessor< Data<vector<Triangle> > > triangles = d_triangles;
     ReadAccessor< Data<vector<Tetra> > > tetrahedra = d_tetrahedra;
 
-    updateAllInputsIfDirty(); // the easy way to make sure every inputs are up-to-date
+    updateAllInputs(); // the easy way to make sure every inputs are up-to-date
 
     cleanDirty();
 
@@ -588,7 +588,7 @@ void MeshROI<DataTypes>::compute()
 
 
 template <class DataTypes>
-void MeshROI<DataTypes>::doUpdate()
+void MeshROI<DataTypes>::onUpdate()
 {
     if(d_doUpdate.getValue())
         compute();

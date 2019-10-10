@@ -380,7 +380,7 @@ void TransformPosition<DataTypes>::getTransfoFromTxt()
 
 
 template <class DataTypes>
-void TransformPosition<DataTypes>::doUpdate()
+void TransformPosition<DataTypes>::onUpdate()
 {
     selectTransformationMethod();
 

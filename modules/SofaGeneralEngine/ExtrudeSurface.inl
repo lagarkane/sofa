@@ -67,7 +67,7 @@ void ExtrudeSurface<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void ExtrudeSurface<DataTypes>::doUpdate()
+void ExtrudeSurface<DataTypes>::onUpdate()
 {
     using sofa::core::topology::BaseMeshTopology;
 

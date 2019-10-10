@@ -67,7 +67,7 @@ void MeshSampler<DataTypes>::init()
 
 
 template <class DataTypes>
-void MeshSampler<DataTypes>::doUpdate()
+void MeshSampler<DataTypes>::onUpdate()
 {
     sofa::helper::ReadAccessor< Data< VecCoord > > pos = this->position;
 

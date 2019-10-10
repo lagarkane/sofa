@@ -96,7 +96,7 @@ void ComplementaryROI<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void ComplementaryROI<DataTypes>::doUpdate()
+void ComplementaryROI<DataTypes>::onUpdate()
 {
     ReadAccessor<Data<VecCoord> > position(d_position);
     ReadAccessor<Data<unsigned int> > nbSet(d_nbSet);

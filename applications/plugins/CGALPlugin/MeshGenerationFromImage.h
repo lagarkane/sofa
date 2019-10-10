@@ -121,7 +121,7 @@ public:
     void init();
     void reinit();
 
-    void doUpdate();
+    void onUpdate();
 
     void draw(const sofa::core::visual::VisualParams* vparams);
 

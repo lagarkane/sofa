@@ -92,7 +92,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         const helper::SVector<helper::SVector<To> >& dat = this->VoxelData.getValue();
         raImagei in(this->inputImage);

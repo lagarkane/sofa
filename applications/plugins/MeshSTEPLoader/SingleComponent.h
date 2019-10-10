@@ -49,7 +49,7 @@ public:
 
     virtual void init();
     virtual void reinit();
-    virtual void doUpdate();
+    virtual void onUpdate();
 
     template <class T>
     static bool canCreate(T*& obj, core::objectmodel::BaseContext* context, core::objectmodel::BaseObjectDescription* arg)

@@ -274,20 +274,6 @@ void BaseObject::reinit()
 {
 }
 
-void BaseObject::updateInternal()
-{
-    const auto& mapTrackedData = m_internalDataTracker.getMapTrackedData();
-    for( auto const& it : mapTrackedData )
-    {
-        it.first->updateIfDirty();
-    }
-
-    if(m_internalDataTracker.hasChanged())
-    {
-        doUpdateInternal();
-        m_internalDataTracker.clean();
-    }
-}
 
 void BaseObject::trackInternalData(const objectmodel::BaseData& data)
 {
@@ -317,8 +303,25 @@ bool BaseObject::hasDataChanged(const objectmodel::BaseData& data)
     return m_internalDataTracker.hasChanged(data);
 }
 
-void BaseObject::doUpdateInternal()
-{ }
+void BaseObject::updateDataFields()
+{
+    const auto& mapTrackedData = m_internalDataTracker.getMapTrackedData();
+    for( auto const& it : mapTrackedData )
+    {
+        it.first->updateIfDirty();
+    }
+
+    if(m_internalDataTracker.hasChanged())
+    {
+        onDataChanged();
+        m_internalDataTracker.clean();
+    }
+}
+
+void BaseObject::onDataChanged()
+{
+    // to override in childs
+}
 
 void BaseObject::storeResetState()
 { }

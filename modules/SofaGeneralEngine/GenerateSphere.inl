@@ -182,7 +182,7 @@ void GenerateSphere<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void GenerateSphere<DataTypes>::doUpdate()
+void GenerateSphere<DataTypes>::onUpdate()
 {
     const Real radius = f_radius.getValue();
 	const size_t frequency = f_tessellationDegree.getValue();

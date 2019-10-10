@@ -91,7 +91,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         unsigned int nodeIndex = d_nodeIndex.getValue();
         sout << "Update image for node " << nodeIndex << sendl;

@@ -59,7 +59,7 @@ MeshTopology::EdgeUpdate::EdgeUpdate(MeshTopology* t)
 
 }
 
-void MeshTopology::EdgeUpdate::doUpdate()
+void MeshTopology::EdgeUpdate::onUpdate()
 {
     if(topology->hasVolume() ) updateFromVolume();
     else if(topology->hasSurface()) updateFromSurface();
@@ -242,7 +242,7 @@ MeshTopology::TriangleUpdate::TriangleUpdate(MeshTopology *t)
 }
 
 
-void MeshTopology::TriangleUpdate::doUpdate()
+void MeshTopology::TriangleUpdate::onUpdate()
 {
     typedef MeshTopology::SeqTetrahedra SeqTetrahedra;
     typedef MeshTopology::SeqTriangles SeqTriangles;
@@ -295,7 +295,7 @@ MeshTopology::QuadUpdate::QuadUpdate(MeshTopology *t)
     setDirtyValue();
 }
 
-void MeshTopology::QuadUpdate::doUpdate()
+void MeshTopology::QuadUpdate::onUpdate()
 {
     typedef MeshTopology::SeqHexahedra SeqHexahedra;
     typedef MeshTopology::SeqQuads SeqQuads;

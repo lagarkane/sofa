@@ -189,7 +189,7 @@ protected:
 
     unsigned int time;
 
-    void doUpdate() override
+    void onUpdate() override
     {
         ImageValuesFromPositionsSpecialization<ImageTypes>::update( *this );
     }

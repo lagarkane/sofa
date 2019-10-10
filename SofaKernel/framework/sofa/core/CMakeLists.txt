@@ -106,6 +106,7 @@ set(HEADER_FILES
     objectmodel/Context.h
     objectmodel/ContextObject.h
     objectmodel/DDGNode.h
+    objectmodel/EngineData.h
     objectmodel/Data.h
     objectmodel/DataFileName.h
     objectmodel/DetachNodeEvent.h

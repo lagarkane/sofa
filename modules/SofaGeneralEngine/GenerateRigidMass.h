@@ -52,7 +52,7 @@ public:
     /// Update method called when variables used in precomputation are modified.
     void reinit() override;
     /// Update the output values
-    void doUpdate() override;
+    void onUpdate() override;
 
 protected:
 

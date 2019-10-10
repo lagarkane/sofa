@@ -91,7 +91,7 @@ public:
 public:
     void init() override;
     void reinit() override;
-    void doUpdate() override;
+    void onUpdate() override;
     void draw(const VisualParams*) override;
 
     void computeBBox(const ExecParams*  params, bool onlyVisible=false ) override;

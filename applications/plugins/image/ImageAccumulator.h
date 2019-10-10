@@ -113,7 +113,7 @@ protected:
     ctime_t t0,t;
     int count;
 
-    void doUpdate() override
+    void onUpdate() override
     {
         if(SimuTime==this->getContext()->getTime()) return; // check if simutime has changed
         SimuTime=this->getContext()->getTime();

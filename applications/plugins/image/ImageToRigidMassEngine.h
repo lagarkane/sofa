@@ -120,7 +120,7 @@ protected:
 
     unsigned int time;
 
-    void doUpdate() override
+    void onUpdate() override
     {
         raTransform inT(this->transform);
         raImage in(this->image);

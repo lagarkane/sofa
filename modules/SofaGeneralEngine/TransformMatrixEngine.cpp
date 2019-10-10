@@ -75,7 +75,7 @@ void AbstractTransformMatrixEngine::reinit()
  * InvertTransformMatrixEngine
  */
 
-void InvertTransformMatrixEngine::doUpdate()
+void InvertTransformMatrixEngine::onUpdate()
 {
     helper::ReadAccessor< Data<Matrix4> > inT = d_inT;
     helper::WriteAccessor< Data<Matrix4> > outT = d_outT;
@@ -100,7 +100,7 @@ void TranslateTransformMatrixEngine::init()
     setDirtyValue();
 }
 
-void TranslateTransformMatrixEngine::doUpdate()
+void TranslateTransformMatrixEngine::onUpdate()
 {
     helper::ReadAccessor< Data<Matrix4> > inT = d_inT;
     helper::ReadAccessor< Data<Vector3> > translation = d_translation;
@@ -129,7 +129,7 @@ void RotateTransformMatrixEngine::init()
     setDirtyValue();
 }
 
-void RotateTransformMatrixEngine::doUpdate()
+void RotateTransformMatrixEngine::onUpdate()
 {
     helper::ReadAccessor< Data<Matrix4> > inT = d_inT;
     helper::ReadAccessor< Data<Vector3> > rotation = d_rotation;
@@ -161,7 +161,7 @@ void ScaleTransformMatrixEngine::init()
     setDirtyValue();
 }
 
-void ScaleTransformMatrixEngine::doUpdate()
+void ScaleTransformMatrixEngine::onUpdate()
 {
     helper::ReadAccessor< Data<Matrix4> > inT = d_inT;
     helper::ReadAccessor< Data<Vector3> > scale = d_scale;

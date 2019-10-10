@@ -135,7 +135,7 @@ void Distances< DataTypes >::reinit()
 }
 
 template<class DataTypes>
-void Distances< DataTypes >::doUpdate()
+void Distances< DataTypes >::onUpdate()
 {
 
 

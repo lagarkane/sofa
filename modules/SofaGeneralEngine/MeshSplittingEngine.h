@@ -137,7 +137,7 @@ public:
     }
 
 
-    void doUpdate() override;
+    void onUpdate() override;
 
 protected:
     void resizeData()

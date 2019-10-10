@@ -109,7 +109,7 @@ public:
 protected:
 
 
-    void doUpdate() override
+    void onUpdate() override
     {
         helper::WriteOnlyAccessor< Data< helper::vector<Index> > > indices = d_indices;
         indices.clear();

@@ -80,7 +80,7 @@ void MergeVectors<VecT>::reinit()
 }
 
 template <class VecT>
-void MergeVectors<VecT>::doUpdate()
+void MergeVectors<VecT>::onUpdate()
 {
     unsigned int nb = f_nbInputs.getValue();
     SOFA_UNUSED(nb);

@@ -172,7 +172,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         if(!deformationMapping) { serr<<SOFA_CLASS_METHOD<<"can't compute the mass : no mapping found"<<sendl; return; }
         if(!dofs) { serr<<SOFA_CLASS_METHOD<<"can't compute the mass : no MechanicalObject<Vec3> found"<<sendl; return; }

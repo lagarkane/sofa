@@ -58,7 +58,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     Data<VecIndex> f_in1; ///< first set of indices
     Data<VecIndex> f_in2; ///< second set of indices

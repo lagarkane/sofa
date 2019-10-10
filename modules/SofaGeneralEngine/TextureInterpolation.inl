@@ -82,7 +82,7 @@ void TextureInterpolation<DataTypes>::reinit()
 
 
 template <class DataTypes>
-void TextureInterpolation<DataTypes>::doUpdate()
+void TextureInterpolation<DataTypes>::onUpdate()
 {
     if (!_inputField.isSet())
         return;

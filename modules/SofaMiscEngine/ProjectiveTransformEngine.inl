@@ -61,7 +61,7 @@ void ProjectiveTransformEngine<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void ProjectiveTransformEngine<DataTypes>::doUpdate()
+void ProjectiveTransformEngine<DataTypes>::onUpdate()
 {
     helper::ReadAccessor< Data<VecCoord> > in = f_inputX;
     helper::WriteAccessor< Data<VecCoord> > out = f_outputX;

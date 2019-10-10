@@ -58,7 +58,7 @@ protected:
 public:
     void init() override;
     void reinit() override;
-    void doUpdate() override;
+    void onUpdate() override;
 
     //Input
     Data<helper::vector<sofa::core::loader::PrimitiveGroup > > f_groups; ///< Groups

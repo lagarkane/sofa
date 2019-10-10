@@ -34,7 +34,7 @@ namespace engine
 {
 
 template <class DataTypes>
-void MeshClosingEngine<DataTypes>::doUpdate()
+void MeshClosingEngine<DataTypes>::onUpdate()
 {
     helper::ReadAccessor<Data< SeqPositions > > pos(this->inputPosition);
     helper::ReadAccessor<Data< SeqTriangles > > tri(this->inputTriangles);

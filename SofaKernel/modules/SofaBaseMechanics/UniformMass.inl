@@ -233,12 +233,12 @@ template <class DataTypes, class MassType>
 void UniformMass<DataTypes, MassType>::reinit()
 {
     // Now update is handled through the doUpdateInternal mechanism
-    // called at each begin of step through the UpdateInternalDataVisitor
+    // called at each begin of step through the UpdateDataFieldsVisitor
 }
 
 
 template <class DataTypes, class MassType>
-void UniformMass<DataTypes, MassType>::doUpdateInternal()
+void UniformMass<DataTypes, MassType>::onDataChanged()
 {
     if (this->hasDataChanged(d_totalMass))
     {

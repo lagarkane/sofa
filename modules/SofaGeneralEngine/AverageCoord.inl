@@ -63,7 +63,7 @@ void AverageCoord<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void AverageCoord<DataTypes>::doUpdate()
+void AverageCoord<DataTypes>::onUpdate()
 {
     if(mstate==NULL)
     {

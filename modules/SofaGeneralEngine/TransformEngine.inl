@@ -270,7 +270,7 @@ private:
 
 
 template <class DataTypes>
-void TransformEngine<DataTypes>::doUpdate()
+void TransformEngine<DataTypes>::onUpdate()
 {
     const defaulttype::Vector3 &s=scale.getValue();
     const defaulttype::Vector3 &r=rotation.getValue();

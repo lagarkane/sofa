@@ -70,7 +70,7 @@ void StiffSpringForceField<DataTypes>::init()
 }
 
 template<class DataTypes>
-void StiffSpringForceField<DataTypes>::doUpdateInternal()
+void StiffSpringForceField<DataTypes>::onDataChanged()
 {
     if (!d_indices1.isSet() && !d_indices2.isSet()) // nothing to do in this case
         return;

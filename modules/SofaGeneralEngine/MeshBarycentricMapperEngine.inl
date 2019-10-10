@@ -78,7 +78,7 @@ void MeshBarycentricMapperEngine<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void MeshBarycentricMapperEngine<DataTypes>::doUpdate()
+void MeshBarycentricMapperEngine<DataTypes>::onUpdate()
 {
     using sofa::defaulttype::Vector3;
     using sofa::defaulttype::Matrix3;

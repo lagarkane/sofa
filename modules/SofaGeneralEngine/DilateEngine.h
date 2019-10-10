@@ -67,7 +67,7 @@ public:
     void init() override;
     void bwdInit() override;
     void reinit() override;
-    void doUpdate() override;
+    void onUpdate() override;
 
     virtual std::string getTemplateName() const override
     {

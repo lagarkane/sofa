@@ -78,7 +78,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     void draw(const core::visual::VisualParams* vparams) override;
 
@@ -176,7 +176,7 @@ template<> bool SphereROI<defaulttype::Rigid3Types>::isEdgeInSphere(const Vec3& 
 template<> bool SphereROI<defaulttype::Rigid3Types>::isTriangleInSphere(const Vec3& c, const Real& r, const sofa::core::topology::BaseMeshTopology::Triangle& triangle);
 template<> bool SphereROI<defaulttype::Rigid3Types>::isQuadInSphere(const Vec3& c, const Real& r, const sofa::core::topology::BaseMeshTopology::Quad& quad);
 template<> bool SphereROI<defaulttype::Rigid3Types>::isTetrahedronInSphere(const Vec3& c, const Real& r, const sofa::core::topology::BaseMeshTopology::Tetra& tetrahedron);
-template<> void SphereROI<defaulttype::Rigid3Types>::doUpdate();
+template<> void SphereROI<defaulttype::Rigid3Types>::onUpdate();
 
 
 #if  !defined(SOFA_COMPONENT_ENGINE_SPHEREROI_CPP)

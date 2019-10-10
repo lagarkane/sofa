@@ -66,7 +66,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     void draw(const core::visual::VisualParams* vparams) override;
 

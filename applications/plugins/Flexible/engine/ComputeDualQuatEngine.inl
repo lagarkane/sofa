@@ -59,7 +59,7 @@ ComputeDualQuatEngine< DataTypes >::ComputeDualQuatEngine()
 
 
 template < class DataTypes >
-void ComputeDualQuatEngine< DataTypes >::doUpdate()
+void ComputeDualQuatEngine< DataTypes >::onUpdate()
 {
     typedef sofa::helper::DualQuatCoord3<Real> DualQuat;
 

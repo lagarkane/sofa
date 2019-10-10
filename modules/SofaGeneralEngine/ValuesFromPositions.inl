@@ -276,7 +276,7 @@ typename ValuesFromPositions<DataTypes>::Vec3 ValuesFromPositions<DataTypes>::ve
 
 
 template <class DataTypes>
-void ValuesFromPositions<DataTypes>::doUpdate()
+void ValuesFromPositions<DataTypes>::onUpdate()
 {
     TempData data;
     data.dir = f_direction.getValue();

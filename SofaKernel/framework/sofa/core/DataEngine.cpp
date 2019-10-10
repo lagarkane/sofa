@@ -43,9 +43,10 @@ DataEngine::~DataEngine()
 void DataEngine::addInput(objectmodel::BaseData* n)
 {
     m_dataTracker.trackData(*n);
-    if (n->getOwner() == this && (!n->getGroup() || !n->getGroup()[0]))
+    if (n->getOwner() == this && n->getGroup().empty())
         n->setGroup("Inputs"); // set the group of input Datas if not yet set
     core::objectmodel::DDGNode::addInput(n);
+    m_inputDataFields.push_back(n);
     setDirtyValue();
 }
 
@@ -55,6 +56,26 @@ void DataEngine::addOutput(objectmodel::BaseData* n)
     if (n->getOwner() == this && (!n->getGroup() || !n->getGroup()[0]))
         n->setGroup("Outputs"); // set the group of output Datas if not yet set
     core::objectmodel::DDGNode::addOutput(n);
+    m_outputDataFields.push_back(n);
+    setDirtyValue();
+}
+
+/// Add a new input to this engine
+void DataEngine::removeInput(objectmodel::BaseData* n)
+{
+    m_inputDataTracker.untrackData(*n);
+    if (n->getOwner() == this)
+        m_inputDataFields.erase(std::find(m_inputDataFields.begin(), m_inputDataFields.end(), n));
+    core::objectmodel::DDGNode::delInput(n);
+    setDirtyValue();
+}
+
+/// Add a new output to this engine
+void DataEngine::removeOutput(objectmodel::BaseData* n)
+{
+    if (n->getOwner() == this)
+        m_inputDataFields.erase(std::find(m_outputDataFields.begin(), m_outputDataFields.end(), n));
+    core::objectmodel::DDGNode::delOutput(n);
     setDirtyValue();
 }
 
@@ -71,11 +92,29 @@ void DataEngine::update()
 {
     updateAllInputs();
     DDGNode::cleanDirty();
-    doUpdate();
-    m_dataTracker.clean();
+    onUpdate();
+    m_inputDataTracker.clean();
+}
+
+bool DataEngine::hasInputDataChanged(const objectmodel::BaseData& input)
+{
+    return m_inputDataTracker.hasChanged(input);
+}
+
+bool DataEngine::hasInputDataChanged()
+{
+    return m_inputDataTracker.hasChanged();
 }
 
 
+
+void DataEngine::cleanDirty(const core::ExecParams* params)
+{
+    core::objectmodel::DDGNode::cleanDirty(params);
+
+    /// it is also time to clean the tracked Data
+    m_inputDataTracker.clean();
+}
 
 } // namespace core
 

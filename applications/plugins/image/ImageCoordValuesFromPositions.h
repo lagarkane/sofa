@@ -213,7 +213,7 @@ protected:
 
     unsigned int time;
 
-    void doUpdate() override
+    void onUpdate() override
     {
         ImageCoordValuesFromPositionsSpecialization<ImageTypes>::update( *this );
     }

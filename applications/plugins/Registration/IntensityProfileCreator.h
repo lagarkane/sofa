@@ -82,7 +82,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         helper::ReadAccessor<Data< helper::vector<T> > > val(this->values);
 

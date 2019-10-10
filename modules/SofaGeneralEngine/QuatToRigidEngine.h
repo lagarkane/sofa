@@ -58,7 +58,7 @@ protected:
     QuatToRigidEngine();
     ~QuatToRigidEngine() override;
 public:
-    void doUpdate() override;
+    void onUpdate() override;
     void init() override;
     void reinit() override;
 

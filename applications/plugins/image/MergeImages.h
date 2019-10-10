@@ -172,7 +172,7 @@ protected:
         Coord u;
     };
 
-    void doUpdate() override
+    void onUpdate() override
     {
         unsigned int nb = nbImages.getValue();
         inputImages.resize(nb);

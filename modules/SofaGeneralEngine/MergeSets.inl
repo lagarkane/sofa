@@ -67,7 +67,7 @@ void MergeSets<T>::reinit()
 }
 
 template <class T>
-void MergeSets<T>::doUpdate()
+void MergeSets<T>::onUpdate()
 {
     std::string op = f_op.getValue();
     if (op.empty()) op = "union";

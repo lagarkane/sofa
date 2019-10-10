@@ -74,7 +74,7 @@ public:
         return DataTypes::Name();
     }    
 protected:
-    void doUpdate() override;
+    void onUpdate() override;
 
     Data<VecCoord> f_inputX; ///< input position
     Data<VecCoord> f_outputX; ///< ouput position

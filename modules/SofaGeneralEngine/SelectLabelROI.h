@@ -86,7 +86,7 @@ protected:
 
     ~SelectLabelROI() override {}
 
-    void doUpdate() override
+    void onUpdate() override
     {
         helper::ReadAccessor< Data< helper::vector<T>  > > selectLabels = d_selectLabels;
         // convert to set for efficient look-up

@@ -32,6 +32,8 @@
 
 #include <deque>
 
+#include <sofa/core/objectmodel/ComponentState.h>
+#include <sofa/core/DataTracker.h>
 
 // forward declaration of castable classes
 // @author Matthieu Nesme, 2015
@@ -271,6 +273,7 @@ public:
     {
         BaseData::BaseInitData res;
         this->initData0(field, res, name, help, isDisplayed, isReadOnly);
+        res.ownerClass = this->GetClass()->className;
         return res;
     }
 
@@ -280,8 +283,18 @@ public:
     {
         typename Data<T>::InitData res;
         this->initData0(field, res, value, name, help, isDisplayed, isReadOnly);
+        res.ownerClass = this->GetClass()->className;
         return res;
     }
+
+
+    /// Checks if a data has changed
+    /// @returns true if it changed, false otherwise
+    bool hasDataChanged() const;
+    /// Checks if a data has changed
+    /// @param data The data field to check for. data *has to be owned* by `this`
+    /// @returns true if it changed, false otherwise
+    bool hasDataChanged(const BaseData& data) const;
 
     /// Add a data field.
     /// Note that this method should only be called if the Data was not initialized with the initData method
@@ -475,6 +488,9 @@ protected:
     VecLink m_vecLink;
     /// name -> Link multi-map (includes names and aliases)
     MapLink m_aliasLink;
+
+    /// Keeps track of changes happening in this object's data fields
+    DataTracker m_dataTracker;
 
 public:
     /// Name of the object.

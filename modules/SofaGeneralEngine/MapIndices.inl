@@ -86,7 +86,7 @@ inline void MapIndices<unsigned int>::apply(Value& v, const MapIndex& m)
 }
 
 template <class T>
-void MapIndices<T>::doUpdate()
+void MapIndices<T>::onUpdate()
 {
     helper::ReadAccessor<Data<VecValue> > in = f_in;
     helper::ReadAccessor<Data<VecIndex> > indices = f_indices;

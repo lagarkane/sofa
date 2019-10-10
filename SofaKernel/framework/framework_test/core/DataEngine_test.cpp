@@ -31,7 +31,6 @@ namespace sofa {
 /// to test tracked Data
 class TestEngine : public core::DataEngine
 {
-
 public:
 
     SOFA_CLASS(TestEngine,core::DataEngine);
@@ -52,9 +51,6 @@ public:
 
     void init() override
     {
-        addInput(&input);
-        addOutput(&output);
-        setDirtyValue();
     }
 
     void reinit() override
@@ -62,11 +58,11 @@ public:
         update();
     }
 
-    void doUpdate() override
+    void onUpdate() override
     {
         // true only iff the DataTracker associated to the Data 'input' is Dirty
         // that could only happen if 'input' was dirtied since last update
-        if( m_dataTracker.hasChanged( input ) )
+        if( hasInputDataChanged( input ) )
             output.setValue(CHANGED);
         else
             output.setValue(NO_CHANGED);

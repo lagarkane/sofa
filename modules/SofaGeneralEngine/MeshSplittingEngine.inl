@@ -78,7 +78,7 @@ MeshSplittingEngine<DataTypes>::~MeshSplittingEngine()
 }
 
 template <class DataTypes>
-void MeshSplittingEngine<DataTypes>::doUpdate()
+void MeshSplittingEngine<DataTypes>::onUpdate()
 {
     helper::ReadAccessor<Data< SeqPositions > > i_pos(this->inputPosition);
     const size_t& nb = nbInputs.getValue();

@@ -82,7 +82,7 @@ void TopologyEngineImpl< VecT>::reinit()
 
 
 template <typename VecT>
-void TopologyEngineImpl< VecT>::doUpdate()
+void TopologyEngineImpl< VecT>::onUpdate()
 {
     std::string msg = this->name.getValue() + " - doUpdate: Nbr changes: " + std::to_string(m_changeList.getValue().size());
     sofa::helper::AdvancedTimer::stepBegin(msg.c_str());

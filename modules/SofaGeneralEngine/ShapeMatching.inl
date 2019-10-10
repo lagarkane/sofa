@@ -105,7 +105,7 @@ void ShapeMatching<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void ShapeMatching<DataTypes>::doUpdate()
+void ShapeMatching<DataTypes>::onUpdate()
 {
     const VecCoord& restPositions = mstate->read(core::ConstVecCoordId::restPosition())->getValue();
     helper::ReadAccessor< Data< VecCoord > > fixedPositions0 = this->fixedPosition0;
@@ -205,7 +205,7 @@ void ShapeMatching<DataTypes>::doUpdate()
 
 // Specialization for rigids
 template <>
-void ShapeMatching<sofa::defaulttype::Rigid3Types >::doUpdate();
+void ShapeMatching<sofa::defaulttype::Rigid3Types >::onUpdate();
 
 
 

@@ -61,7 +61,7 @@ void DifferenceEngine<DataType>::reinit()
 }
 
 template <class DataType>
-void DifferenceEngine<DataType>::doUpdate()
+void DifferenceEngine<DataType>::onUpdate()
 {
     helper::ReadAccessor<Data<VecData> > in = d_input;
     helper::ReadAccessor<Data<VecData> > sub = d_substractor;

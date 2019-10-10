@@ -19,12 +19,7 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-#ifndef SOFA_SIMULATION_UPDATEINTERNALDATAVISITOR_H
-#define SOFA_SIMULATION_UPDATEINTERNALDATAVISITOR_H
-
-#include <sofa/core/ExecParams.h>
-#include <sofa/simulation/Visitor.h>
-#include <sofa/simulation/Node.h>
+#include <sofa/simulation/UpdateDataFieldsVisitor.h>
 
 namespace sofa
 {
@@ -32,29 +27,20 @@ namespace sofa
 namespace simulation
 {
 
-/** Triggers the updateInternal() function to update method called
- * when variables (used to compute other internal variables) are modified
- */
-class SOFA_SIMULATION_CORE_API UpdateInternalDataVisitor : public Visitor
+
+Visitor::Result UpdateDataFieldsVisitor::processNodeTopDown(simulation::Node* node)
 {
+    for_each(this, node, node->object, &UpdateDataFieldsVisitor::processUpdateDataFields);
+    return RESULT_CONTINUE;
+}
 
-public:
-    UpdateInternalDataVisitor(const core::ExecParams* params): Visitor(params) {}
+void UpdateDataFieldsVisitor::processUpdateDataFields(simulation::Node* , sofa::core::objectmodel::BaseObject* baseObj)
+{
+    baseObj->updateDataFields();
+}
 
-    void processUpdateInternalData(simulation::Node* node, sofa::core::objectmodel::BaseObject* baseObj);
-    Result processNodeTopDown(simulation::Node* node) override;
 
-    /// Specify whether this action can be parallelized.
-    bool isThreadSafe() const override { return true; }
-
-    /// Return a category name for this action.
-    /// Only used for debugging / profiling purposes
-    const char* getCategoryName() const override { return "internal data update"; }
-    const char* getClassName() const override { return "UpdateInternalDataVisitor"; }
-};
 
 } // namespace simulation
 
 } // namespace sofa
-
-#endif

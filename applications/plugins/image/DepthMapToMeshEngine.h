@@ -147,7 +147,7 @@ protected:
     static const unsigned texture_res=256;
 #endif /* SOFA_NO_OPENGL */
 
-    void doUpdate() override
+    void onUpdate() override
     {
         raImage in(this->image);
         raTransform inT(this->transform);

@@ -121,8 +121,8 @@ public:
             for (unsigned int i=size; i<this->size(); ++i) {
                 if (componentAsDataEngine!=NULL)
                 {
-                    if(m_dataEngineDataType==DataEngineInput) componentAsDataEngine->delInput((*this)[i]);
-                    else if(m_dataEngineDataType==DataEngineOutput) componentAsDataEngine->delOutput((*this)[i]);
+                    if(m_dataEngineDataType==DataEngineInput) componentAsDataEngine->removeInput((*this)[i]);
+                    else if(m_dataEngineDataType==DataEngineOutput) componentAsDataEngine->removeOutput((*this)[i]);
                 }
                 delete (*this)[i];
             }
@@ -136,16 +136,16 @@ public:
                 std::ostringstream oname, ohelp;
                 oname << m_name << (i+1);
                 ohelp << m_help << "(" << (i+1) << ")";
-                Data< T >* d = new Data< T >(m_defaultValue, getAStringCopy(ohelp.str().c_str()), true, false);
+                InputData< T >* d = new InputData< T >(m_defaultValue, getAStringCopy(ohelp.str().c_str()), true, false);
                 d->setName(oname.str());
                 this->push_back(d);
-                if (m_component!=NULL)
-                    m_component->addData(d);
                 if (componentAsDataEngine!=NULL)
                 {
                     if(m_dataEngineDataType==DataEngineInput) componentAsDataEngine->addInput(d);
                     else if(m_dataEngineDataType==DataEngineOutput) componentAsDataEngine->addOutput(d);
                 }
+                else if (m_component!=NULL)
+                    m_component->addData(d);
             }
         }
     }

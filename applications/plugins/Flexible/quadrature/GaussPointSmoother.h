@@ -98,7 +98,7 @@ protected:
     }
 
 
-    void doUpdate() override
+    void onUpdate() override
     {
         BaseShapeFunction* _shapeFunction=NULL;
         this->getContext()->get(_shapeFunction,core::objectmodel::BaseContext::SearchUp);

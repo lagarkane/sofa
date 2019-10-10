@@ -37,14 +37,21 @@ void DataTracker::trackData( const objectmodel::BaseData& data )
     m_dataTrackers[&data] = data.getCounter();
 }
 
-bool DataTracker::hasChanged( const objectmodel::BaseData& data )
+void DataTracker::untrackData( const objectmodel::BaseData& data )
 {
-    return m_dataTrackers[&data] != data.getCounter();
+    if (m_dataTrackers.find(&data) != m_dataTrackers.end())
+        m_dataTrackers.erase(m_dataTrackers.find(&data));
 }
 
-bool DataTracker::hasChanged()
+
+bool DataTracker::hasChanged( const objectmodel::BaseData& data ) const
 {
-    for( DataTrackers::iterator it=m_dataTrackers.begin(),itend=m_dataTrackers.end() ; it!=itend ; ++it )
+    return m_dataTrackers.find(&data)->second != data.getCounter();
+}
+
+bool DataTracker::hasChanged() const
+{
+    for( DataTrackers::const_iterator it=m_dataTrackers.begin(),itend=m_dataTrackers.end() ; it!=itend ; ++it )
         if( it->second != it->first->getCounter() ) return true;
     return false;
 }

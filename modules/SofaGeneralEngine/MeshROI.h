@@ -72,7 +72,7 @@ public:
 
     void init() override;
     void reinit() override;
-    void doUpdate() override;
+    void onUpdate() override;
     void draw(const core::visual::VisualParams*) override;
 
     /// Pre-construction check method called by ObjectFactory.

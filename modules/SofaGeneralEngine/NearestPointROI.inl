@@ -83,11 +83,11 @@ void NearestPointROI<DataTypes>::reinit()
         msg_error() << "2 valid mechanicalobjects are required.";
         return;
     }
-    doUpdate();
+    onUpdate();
 }
 
 template <class DataTypes>
-void NearestPointROI<DataTypes>::doUpdate()
+void NearestPointROI<DataTypes>::onUpdate()
 {
     Coord pt2;
     auto dist = [](const Coord& a, const Coord& b) { return (b - a).norm(); };

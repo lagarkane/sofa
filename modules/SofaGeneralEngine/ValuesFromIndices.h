@@ -64,7 +64,7 @@ public:
 
     void reinit() override;
 
-    void doUpdate() override;
+    void onUpdate() override;
 
     Data<VecValue> f_in; ///< input values
     Data<VecIndex> f_indices; ///< Indices of the values

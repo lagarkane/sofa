@@ -89,7 +89,7 @@ public:
     }
 
     void reinit()    override { update();  }
-    void doUpdate() override
+    void onUpdate() override
     {
         helper::ReadAccessor<Data< SeqTriangles > > triangles(this->d_triangles);
         helper::ReadAccessor<Data< SeqQuads > > quads(this->d_quads);

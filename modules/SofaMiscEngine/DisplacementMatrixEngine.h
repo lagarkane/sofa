@@ -73,7 +73,7 @@ public:
     // methods
     DisplacementTransformEngine();
     void init() override;   // compute the inverse matrices
-    void doUpdate() override; // compute the displacements wrt original positions
+    void onUpdate() override; // compute the displacements wrt original positions
 
     // To simplify the template name in the xml file
     virtual std::string getTemplateName() const override { return templateName(this); }
@@ -123,7 +123,7 @@ public:
 
     void init() override;   // compute the inverse matrices
     void reinit() override; // compute S*inverse and store it once and for all.
-    void doUpdate() override; // compute the displacements wrt original positions
+    void onUpdate() override; // compute the displacements wrt original positions
 
     // To simplify the template name in the xml file
     virtual std::string getTemplateName() const override { return templateName(this); }

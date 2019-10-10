@@ -251,7 +251,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         // to be backward-compatible, if less than 3 values, fill with the last one
         waVecReal vs( voxelSize ); unsigned vs_lastid=vs.size()-1;

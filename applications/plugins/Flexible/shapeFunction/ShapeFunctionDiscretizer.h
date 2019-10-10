@@ -122,7 +122,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         if( !_shapeFunction ) return;
 

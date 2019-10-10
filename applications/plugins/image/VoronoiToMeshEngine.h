@@ -228,7 +228,7 @@ protected:
     }
 
 
-    void doUpdate() override
+    void onUpdate() override
     {
         raImage in(this->image);
         raImage inb(this->background);

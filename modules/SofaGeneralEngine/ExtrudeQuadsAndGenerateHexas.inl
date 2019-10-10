@@ -72,7 +72,7 @@ void ExtrudeQuadsAndGenerateHexas<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void ExtrudeQuadsAndGenerateHexas<DataTypes>::doUpdate()
+void ExtrudeQuadsAndGenerateHexas<DataTypes>::onUpdate()
 {
     using sofa::core::topology::BaseMeshTopology;
 

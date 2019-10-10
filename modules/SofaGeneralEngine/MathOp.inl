@@ -466,7 +466,7 @@ void MathOp<VecT>::reinit()
 }
 
 template <class VecT>
-void MathOp<VecT>::doUpdate()
+void MathOp<VecT>::onUpdate()
 {
 //    createInputs();
     std::string op = f_op.getValue().getSelectedItem();

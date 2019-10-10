@@ -148,7 +148,7 @@ public:
 
 protected:
 
-    void doUpdate() override
+    void onUpdate() override
     {
         if(!deformationMapping) return;
 

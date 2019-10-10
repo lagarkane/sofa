@@ -65,7 +65,7 @@ void MergePoints<DataTypes>::reinit()
 }
 
 template <class DataTypes>
-void MergePoints<DataTypes>::doUpdate()
+void MergePoints<DataTypes>::onUpdate()
 {
     if (f_noUpdate.getValue() && initDone)
         return;
